@@ -1,0 +1,144 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="real_estate_inventory.project_list">
+      <field name="name">real_estate_inventory list</field>
+      <field name="model">real_estate_inventory.project</field>
+      <field name="arch" type="xml">
+          <tree create="true" import="true">
+            <field name="name"/>
+            <field name="location_id"/>
+          </tree>
+       
+      </field>
+    </record>
+      
+    <record model="ir.ui.view" id="real_estate_inventory.building_list">
+      <field name="name">real_estate_inventory list</field>
+      <field name="model">real_estate_inventory.building</field>
+      <field name="arch" type="xml">
+        <tree create="true" import="true">
+          <field name="project_id"/>
+          <field name="name"/>
+          <field name="number"/>
+          <field name="block_number"/>
+          <field name="phase" />
+        </tree>
+      </field>
+    </record>
+  <record id="unit_view_tree" model="ir.ui.view">
+    <field name="name">Units List</field>
+    <field name="model">product.template</field>
+    <field name="arch" type="xml">
+      <tree create="true" import = "true">
+        <field name="name" />
+        <field name="unit_building_id" />
+        <field name="unit_area" />
+        <field name="unit_type" />
+        <field name="unit_number" />     
+        <field name="unit_floor" />
+        <field name="unit_extra_area" />
+        <field name="view" />
+        <field name="contract_status" />
+        <field name="unit_status" />
+        <field name="unit_cash_price" />
+      </tree>
+    </field>
+  </record>
+    <record model="ir.ui.view" id="real_estate_inventory.unit_form">
+      <field name="name">real_estate_inventory list</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="attributes">
+          <attribute name="name">Inventory Units</attribute>
+        </xpath>
+           <xpath expr="//field[@name='name']" position="attributes">
+          <attribute name="placeholder">e.g. 01/111</attribute>
+        </xpath>
+ <xpath expr="//page[@name='general_information']" position="before">          
+        <page name="unit_details" string="Unit details" >
+        <group name="unit_details" string="Unit Details">
+            <field name="unit_building_id" />
+            <field name="unit_area" />
+            <field name="unit_type" />
+            <field name="unit_number" />     
+            <field name="unit_floor" />
+            <field name="unit_extra_area" />
+            <field name="view" />
+            <field name="contract_status" />
+            <field name="unit_status" />
+            <field name="unit_cash_price" />
+           </group>
+
+        </page>
+        </xpath>
+
+
+                      
+    </field>
+    </record>
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="real_estate_inventory.action_window">
+      <field name="name"> Projects</field>
+      <field name="res_model">real_estate_inventory.project</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+       
+    <record model="ir.actions.act_window" id="real_estate_inventory.action_window_building">
+      <field name="name">Buildings</field>
+      <field name="res_model">real_estate_inventory.building</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  <record model="ir.actions.act_window" id="real_estate_inventory.action_window_unit">
+      <field name="name">Units</field>
+      <field name="res_model">product.template</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+      <record model="ir.actions.act_window" id="real_estate_inventory.dashboard">
+      <field name="name">Dashboard</field>
+      <field name="res_model">product.template</field>
+      <field name="view_mode">dashboard</field>
+    </record>
+    <!-- server action to the one above -->
+    
+    <record model="ir.actions.server" id="real_estate_inventory.action_server">
+      <field name="name">real_estate_inventory server</field>
+      <field name="model_id" ref="model_real_estate_inventory_project"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+   
+
+    <!-- Top menu item -->
+    
+    <menuitem name="Real Estate Inventory" id="real_estate_inventory.menu_root"/>
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Inventory" id="real_estate_inventory.menu_1_inventory" parent="real_estate_inventory.menu_root"/>
+    <menuitem name="Menu 2" id="real_estate_inventory.menu_2" parent="real_estate_inventory.menu_root"/>
+   
+    <!-- actions -->
+    <menuitem name="Units" id="real_estate_inventory.menu_1_units_list" parent="real_estate_inventory.menu_1_inventory"
+              action="real_estate_inventory.action_window_unit"/>
+    <menuitem name="Projects" id="real_estate_inventory.menu_1_projects_list" parent="real_estate_inventory.menu_1_inventory"
+              action="real_estate_inventory.action_window"/>    
+    <menuitem name="Buildings" id="real_estate_inventory.menu_1_buildings_list" parent="real_estate_inventory.menu_1_inventory"
+              action="real_estate_inventory.action_window_building"/>    
+      <menuitem name="Dashboard" id="real_estate_inventory.menu_1_units_dashboard" parent="real_estate_inventory.menu_root"
+              action="real_estate_inventory.dashboard"/>
+   
+    <!-- <menuitem name="Server to list" id="real_estate_inventory" parent="real_estate_inventory.menu_2"
+              action="real_estate_inventory.action_server"/>
+    -->
+  </data>
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+   <data>
+      <record id="real_estate_inventory.unit_view_dashboard" model="ir.ui.view">
+         <field name="name">Dashboard</field>
+         <field name="model">product.template</field>
+         <field name="arch" type="xml">
+         <dashboard>
+         <group>
+            <group>
+               <widget name="pie_chart" title="Units Sold" attrs="{'groupby': 'unit_status'}"/>
+            </group>
+         </group>
+         </dashboard>
+         </field>
+      </record>
+   </data>
+</odoo>

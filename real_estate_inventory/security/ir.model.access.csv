@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_real_estate_inventory_project,access.real_estate_inventory.project,model_real_estate_inventory_project,,1,1,1,0
+access_real_estate_inventory_building,real_estate_inventory.building,model_real_estate_inventory_building,,1,1,1,0
+access_real_estate_inventory_product_template,product.template,model_product_template,,1,1,1,0
+access_real_estate_inventory_preferred_area,real_estate_inventory.preferred_area,model_real_estate_inventory_preferred_area,,1,1,1,0
