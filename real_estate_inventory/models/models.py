@@ -23,9 +23,9 @@ class Building(models.Model):
     phase = fields.Integer('phase')
     
 
-class ProductTemplate(models.Model):
-    # _name = 'real_estate_inventory.unit'
-    _inherit = 'product.template'
+class RealEstateUnit(models.Model):
+     _name = 'real_estate_inventory.unit'
+    _inherit = 'product.product'
     unit_building_id = fields.Many2one('real_estate_inventory.building', string='Building')
     unit_code = fields.Char('Code')
     view = fields.Char('View')
