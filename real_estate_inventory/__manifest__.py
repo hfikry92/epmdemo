@@ -31,6 +31,6 @@
     ],
     'installable': True,
     'application': True,
-    'auto_install': ['account','sales'],
+    'auto_install': ['account'],
 }
 
