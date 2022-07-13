@@ -17,7 +17,7 @@
     'category': "Sales/CRM",
     'version': '1.0',
     # any module necessary for this one to work correctly
-    'depends': ['product','web_dashboard'],
+    'depends': ['account','product','web_dashboard'],
     # always loaded
     'data': [
         'security/ir.model.access.csv',
